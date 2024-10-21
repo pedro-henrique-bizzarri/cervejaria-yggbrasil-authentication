@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.entity;
+package br.com.cervejariayggbrasil.authentication.domain.entity;
 
 public enum PermissaoEnum {
     ADMIN("admin"),

@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.cervejariayggbrasil.authentication.entity.PermissaoEnum;
-import br.com.cervejariayggbrasil.authentication.entity.Usuario;
+import br.com.cervejariayggbrasil.authentication.domain.entity.PermissaoEnum;
+import br.com.cervejariayggbrasil.authentication.domain.entity.Usuario;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
 
 @SpringBootApplication

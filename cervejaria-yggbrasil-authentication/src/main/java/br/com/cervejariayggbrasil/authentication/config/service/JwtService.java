@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.config;
+package br.com.cervejariayggbrasil.authentication.config.service;
 
 import org.springframework.stereotype.Service;
 
@@ -7,7 +7,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
-import br.com.cervejariayggbrasil.authentication.entity.Usuario;
+import br.com.cervejariayggbrasil.authentication.domain.entity.Usuario;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

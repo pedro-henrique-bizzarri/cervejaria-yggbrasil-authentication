@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.service;
+package br.com.cervejariayggbrasil.authentication.config.service;
 
 
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UsuarioDetailsServiceImpl implements UserDetailsService{
+public class AuthorizationService implements UserDetailsService{
     @Autowired
     UsuarioRepository usuarioRepository;
 

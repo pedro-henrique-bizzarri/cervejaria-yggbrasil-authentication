@@ -1,5 +1,5 @@
-package br.com.cervejariayggbrasil.authentication.entity;
+package br.com.cervejariayggbrasil.authentication.domain.dto;
 
 public record AuthenticationDTO(String login, String password) {
-    
+
 }

@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cervejariayggbrasil.authentication.config.JwtService;
-import br.com.cervejariayggbrasil.authentication.entity.AuthenticationDTO;
-import br.com.cervejariayggbrasil.authentication.entity.LoginResponseDTO;
-import br.com.cervejariayggbrasil.authentication.entity.Usuario;
+import br.com.cervejariayggbrasil.authentication.config.service.JwtService;
+import br.com.cervejariayggbrasil.authentication.domain.dto.AuthenticationDTO;
+import br.com.cervejariayggbrasil.authentication.domain.dto.LoginResponseDTO;
+import br.com.cervejariayggbrasil.authentication.domain.entity.Usuario;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("auth")
-public class AunthenticationController {
+public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;

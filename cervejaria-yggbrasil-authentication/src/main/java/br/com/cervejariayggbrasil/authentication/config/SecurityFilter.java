@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import br.com.cervejariayggbrasil.authentication.config.service.JwtService;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
 
 import java.io.IOException;
