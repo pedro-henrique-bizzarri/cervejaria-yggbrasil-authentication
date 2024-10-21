@@ -28,7 +28,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                        .requestMatchers("/home").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/auth/cadastrar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/listar-usuarios").hasRole("ADMIN")    
+                        .requestMatchers(HttpMethod.GET, "/auth/liberar-admin").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/cerveja/cadastrar").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -40,6 +41,9 @@ public class Usuario implements UserDetails{
     private String senha;
 
     private PermissaoEnum permissao;
+
+    @OneToOne(mappedBy = "usuario")
+    private Pessoa pessoa;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
