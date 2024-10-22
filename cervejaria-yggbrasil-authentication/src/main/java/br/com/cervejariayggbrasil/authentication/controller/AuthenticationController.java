@@ -17,6 +17,7 @@ import br.com.cervejariayggbrasil.authentication.service.AuthenticationService;
 import jakarta.validation.Valid;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("auth")
@@ -36,13 +37,17 @@ public class AuthenticationController {
     }
 
     @GetMapping("/listar-usuarios")
-    public ResponseEntity<List<CadastroDTO>> listar(){
-        // TODO
-        return null;
+    public ResponseEntity<List<CadastroResponseDTO>> listar(){
+        List<CadastroResponseDTO> lista = new ArrayList<CadastroResponseDTO>();
+        authenticationService.listar().forEach(p -> lista.add(new CadastroResponseDTO(p)));
+        return ResponseEntity.ok(lista);
     }
 
     @PutMapping("/liberar-admin")
-    public ResponseEntity<LoginResponseDTO> liberarAdmin(String login){
-        return null;
+    public ResponseEntity<String> liberarAdmin(String login){
+        if(authenticationService.liberarAdmin(login))
+            return ResponseEntity.ok("Liberado permissão ADMIN para o usuário: ".concat(login));
+        else
+            return ResponseEntity.ok("Não foi possível liberar acesso ao usuário: ".concat(login));
     }
 }

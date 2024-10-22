@@ -1,7 +1,8 @@
 package br.com.cervejariayggbrasil.authentication.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,6 @@ import br.com.cervejariayggbrasil.authentication.domain.entity.PermissaoEnum;
 import br.com.cervejariayggbrasil.authentication.domain.entity.Pessoa;
 import br.com.cervejariayggbrasil.authentication.repository.PessoaRepository;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
-import jakarta.validation.Valid;
 
 @Service
 public class AuthenticationService {
@@ -56,6 +56,20 @@ public class AuthenticationService {
         pessoaRepository.save(pessoa);
 
         return pessoa;
+    }
+
+    public List<Pessoa> listar() {
+        return pessoaRepository.findAll();
+    }
+
+    public boolean liberarAdmin(String login) {
+        Usuario usuario = (Usuario) usuarioRepository.findByLogin(login);
+        if (usuario == null) 
+            return false;
+
+        usuario.setPermissao(PermissaoEnum.ADMIN);
+        usuarioRepository.save(usuario);
+        return true;
     }
 
 }
