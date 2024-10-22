@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,6 +26,8 @@ public class Pessoa {
     @GeneratedValue(generator="pessoa",strategy=GenerationType.SEQUENCE)
     private int id;
 
+    private String login;
+
     private String nome;
 
     private String sobrenome;
@@ -38,7 +38,4 @@ public class Pessoa {
 
     private String endereco;
 
-    @OneToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
 }

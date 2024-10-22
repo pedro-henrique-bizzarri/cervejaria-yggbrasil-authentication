@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.config;
+package br.com.cervejariayggbrasil.authentication.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/auth/listar-usuarios").hasRole("ADMIN")    
                         .requestMatchers(HttpMethod.GET, "/auth/liberar-admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/cerveja/cadastrar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/home").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

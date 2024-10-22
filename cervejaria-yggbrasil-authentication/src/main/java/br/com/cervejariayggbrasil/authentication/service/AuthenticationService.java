@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.cervejariayggbrasil.authentication.config.service.JwtService;
 import br.com.cervejariayggbrasil.authentication.domain.dto.AuthenticationDTO;
 import br.com.cervejariayggbrasil.authentication.domain.dto.CadastroDTO;
 import br.com.cervejariayggbrasil.authentication.domain.entity.Usuario;
@@ -17,6 +16,7 @@ import br.com.cervejariayggbrasil.authentication.domain.entity.PermissaoEnum;
 import br.com.cervejariayggbrasil.authentication.domain.entity.Pessoa;
 import br.com.cervejariayggbrasil.authentication.repository.PessoaRepository;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
+import br.com.cervejariayggbrasil.authentication.security.service.JwtService;
 
 @Service
 public class AuthenticationService {
@@ -42,17 +42,17 @@ public class AuthenticationService {
     public Pessoa cadastrar(CadastroDTO data) {
         Usuario usuario = new Usuario();
         usuario.setLogin(data.login());
-        usuario.setSenha( new BCryptPasswordEncoder().encode(data.senha()));
+        usuario.setSenha(new BCryptPasswordEncoder().encode(data.senha()));
         usuario.setPermissao(PermissaoEnum.USER);
         usuarioRepository.save(usuario);
         
         Pessoa pessoa = new Pessoa();
+        pessoa.setLogin(data.login());
         pessoa.setNome(data.nome());
         pessoa.setSobrenome(data.sobrenome());
         pessoa.setIdade(data.idade());
         pessoa.setCpf(data.cpf());
         pessoa.setEndereco(data.endereco());
-        pessoa.setUsuario(usuario);
         pessoaRepository.save(pessoa);
 
         return pessoa;

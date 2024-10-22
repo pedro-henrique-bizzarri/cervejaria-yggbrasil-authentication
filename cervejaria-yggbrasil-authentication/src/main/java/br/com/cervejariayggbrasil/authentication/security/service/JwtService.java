@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.config.service;
+package br.com.cervejariayggbrasil.authentication.security.service;
 
 import org.springframework.stereotype.Service;
 
