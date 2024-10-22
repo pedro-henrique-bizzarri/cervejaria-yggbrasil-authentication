@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.security.config;
+package br.com.cervejariayggbrasil.authentication.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
-import br.com.cervejariayggbrasil.authentication.security.service.JwtService;
+import br.com.cervejariayggbrasil.authentication.service.JwtService;
 
 import java.io.IOException;
 

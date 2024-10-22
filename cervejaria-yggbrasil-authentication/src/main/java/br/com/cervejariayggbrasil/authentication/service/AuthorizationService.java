@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.security.service;
+package br.com.cervejariayggbrasil.authentication.service;
 
 
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;

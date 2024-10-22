@@ -16,7 +16,6 @@ import br.com.cervejariayggbrasil.authentication.domain.entity.PermissaoEnum;
 import br.com.cervejariayggbrasil.authentication.domain.entity.Pessoa;
 import br.com.cervejariayggbrasil.authentication.repository.PessoaRepository;
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
-import br.com.cervejariayggbrasil.authentication.security.service.JwtService;
 
 @Service
 public class AuthenticationService {
@@ -72,4 +71,17 @@ public class AuthenticationService {
         return true;
     }
 
+    public void criarUsuarioAdmin(){
+		Usuario usuario = new Usuario();
+		usuario.setLogin("admin");
+		usuario.setSenha(new BCryptPasswordEncoder().encode("123"));
+		usuario.setPermissao(PermissaoEnum.ADMIN);
+		usuarioRepository.save(usuario);
+
+        System.out.println("");
+		System.out.println("Incluido usuário ADMIN no sistema !");
+        System.out.println("Login: admin");
+        System.out.println("Senha: 123");
+        System.out.println("");
+    }
 }

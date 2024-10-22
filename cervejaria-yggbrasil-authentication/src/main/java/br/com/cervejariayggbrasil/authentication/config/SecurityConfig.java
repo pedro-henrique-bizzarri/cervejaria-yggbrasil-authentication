@@ -1,4 +1,4 @@
-package br.com.cervejariayggbrasil.authentication.security.config;
+package br.com.cervejariayggbrasil.authentication.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
