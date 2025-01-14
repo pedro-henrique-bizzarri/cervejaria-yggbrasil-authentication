@@ -8,7 +8,7 @@ public class CervejariaYggbrasilAuthenticationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CervejariaYggbrasilAuthenticationApplication.class, args);
-		System.out.println("\nADMIN criado. Usuario: admin, Senha: 123");
+		System.out.println("\nAplicacao de autenticacao Cervejaria Yggbrasil iniciada !\nUse o usuario ADMIN para liberar o acesso de administrador a novos usuarios.\nUsuario: admin, Senha: 123");
 	}
 
 }

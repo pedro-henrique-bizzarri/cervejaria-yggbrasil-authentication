@@ -56,10 +56,9 @@ public class Usuario implements UserDetails{
         this.senha = senha;
     }
 
-    public Usuario(String login, String senha, PermissaoEnum permissao, String nome, String sobrenome, String cpf, int idade, String endereco) {
+    public Usuario(String login, String senha, String nome, String sobrenome, String cpf, int idade, String endereco) {
         this.login = login;
         this.senha = senha;
-        this.permissao = permissao;
         this.pessoa = new Pessoa(nome, sobrenome, idade, cpf, endereco);
     }
 

@@ -1,5 +1,10 @@
 package br.com.cervejariayggbrasil.authentication.service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -9,16 +14,10 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import br.com.cervejariayggbrasil.authentication.domain.entity.Usuario;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
-import org.springframework.beans.factory.annotation.Value;
-
 @Service
 public class JwtService {
 
-    @Value("${jwt.secret.key}")
+    @Value("${application.jwt.secret.key}")
     private String secret;
 
     public String generateToken(Usuario user){

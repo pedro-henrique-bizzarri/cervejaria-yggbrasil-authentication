@@ -15,7 +15,7 @@ public class CervejariaYggbrasilController {
 
     @GetMapping("/admin")
     public String helloAdmin(){
-        return "Seja bem vindo a Cervejaria Yggbrasil !";
+        return "Seja bem vindo a Cervejaria Yggbrasil para Adiministradores !";
     }
 
 }
