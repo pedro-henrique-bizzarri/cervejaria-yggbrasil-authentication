@@ -1,6 +1,7 @@
 package br.com.cervejariayggbrasil.authentication.config;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,9 +32,9 @@ public class SecurityFilter extends OncePerRequestFilter{
                 var token = this.recoverToken(request);
                 if(token != null){
                     var login = jwtService.validateToken(token);
-                    UserDetails user = usuarioRepository.findByLogin(login).get();
+                    Optional<UserDetails> user = usuarioRepository.findByLogin(login);
         
-                    var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    var authentication = new UsernamePasswordAuthenticationToken(user.get(), null, user.get().getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
                 filterChain.doFilter(request, response);

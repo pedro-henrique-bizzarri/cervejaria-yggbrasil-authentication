@@ -59,13 +59,13 @@ public class UsuarioService {
     }
 
     public void liberarAdmin(String login) {
-        Usuario usuario = (Usuario) usuarioRepository.findByLogin(login).get();
+        Optional<Usuario> usuario = Optional.of((Usuario) usuarioRepository.findByLogin(login).get());
 
-        if (Optional.of(usuario).isEmpty()) 
+        if (usuario.isEmpty()) 
             throw new UserNotFoundException();
 
-        usuario.setPermissao(PermissaoEnum.ADMIN);
-        usuarioRepository.save(usuario);
+        usuario.get().setPermissao(PermissaoEnum.ADMIN);
+        usuarioRepository.save(usuario.get());
     }
 
     private void validaUsuario(Usuario usuario) {
