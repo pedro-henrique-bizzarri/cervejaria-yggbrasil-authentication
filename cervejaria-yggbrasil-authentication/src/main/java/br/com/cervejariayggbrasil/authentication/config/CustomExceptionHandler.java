@@ -9,8 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import br.com.cervejariayggbrasil.authentication.exception.CustomErrorMessage;
 import br.com.cervejariayggbrasil.authentication.exception.IllegalUserAgeException;
-import br.com.cervejariayggbrasil.authentication.exception.RestErrorMessage;
 import br.com.cervejariayggbrasil.authentication.exception.UserExistsException;
 import br.com.cervejariayggbrasil.authentication.exception.UserNotFoundException;
 
@@ -18,8 +18,8 @@ import br.com.cervejariayggbrasil.authentication.exception.UserNotFoundException
 public class CustomExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<RestErrorMessage> methodArgumentNotValidException(MethodArgumentNotValidException exception){
-        RestErrorMessage errorMessage = new RestErrorMessage();
+    public ResponseEntity<CustomErrorMessage> methodArgumentNotValidException(MethodArgumentNotValidException exception){
+        CustomErrorMessage errorMessage = new CustomErrorMessage();
         errorMessage.setHttpStatus(HttpStatus.BAD_REQUEST);
         errorMessage.setMessage(exception.getBindingResult().getFieldErrors()
                                         .stream()
@@ -30,24 +30,24 @@ public class CustomExceptionHandler {
     }
 
     @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<RestErrorMessage> userExistsException(UserExistsException exception){
-        RestErrorMessage errorMessage = new RestErrorMessage();
+    public ResponseEntity<CustomErrorMessage> userExistsException(UserExistsException exception){
+        CustomErrorMessage errorMessage = new CustomErrorMessage();
         errorMessage.setHttpStatus(HttpStatus.BAD_REQUEST);
         errorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<RestErrorMessage> userNotFoundException(UserNotFoundException exception){
-        RestErrorMessage errorMessage = new RestErrorMessage();
+    public ResponseEntity<CustomErrorMessage> userNotFoundException(UserNotFoundException exception){
+        CustomErrorMessage errorMessage = new CustomErrorMessage();
         errorMessage.setHttpStatus(HttpStatus.BAD_REQUEST);
         errorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
     @ExceptionHandler(IllegalUserAgeException.class)
-    public ResponseEntity<RestErrorMessage> illegalUserAgeException(IllegalUserAgeException exception){
-        RestErrorMessage errorMessage = new RestErrorMessage();
+    public ResponseEntity<CustomErrorMessage> illegalUserAgeException(IllegalUserAgeException exception){
+        CustomErrorMessage errorMessage = new CustomErrorMessage();
         errorMessage.setHttpStatus(HttpStatus.BAD_REQUEST);
         errorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
