@@ -8,14 +8,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +44,24 @@ public class Usuario implements UserDetails{
 
     private String senha;
 
+    @Enumerated(EnumType.STRING)
     private PermissaoEnum permissao;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_pessoa", nullable = false)
+    private Pessoa pessoa;
+
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public Usuario(String login, String senha, PermissaoEnum permissao, String nome, String sobrenome, String cpf, int idade, String endereco) {
+        this.login = login;
+        this.senha = senha;
+        this.permissao = permissao;
+        this.pessoa = new Pessoa(nome, sobrenome, idade, cpf, endereco);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("home")
 public class CervejariaYggbrasilController {
 
-    @GetMapping
-    public String getMessage(){
+    @GetMapping("/user")
+    public String helloUser(){
+        return "Seja bem vindo a Cervejaria Yggbrasil !";
+    }
+
+    @GetMapping("/admin")
+    public String helloAdmin(){
         return "Seja bem vindo a Cervejaria Yggbrasil !";
     }
 

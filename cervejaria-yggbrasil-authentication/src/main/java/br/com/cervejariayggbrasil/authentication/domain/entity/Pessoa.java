@@ -26,8 +26,6 @@ public class Pessoa {
     @GeneratedValue(generator="pessoa",strategy=GenerationType.SEQUENCE)
     private int id;
 
-    private String login;
-
     private String nome;
 
     private String sobrenome;
@@ -37,5 +35,13 @@ public class Pessoa {
     private String cpf;
 
     private String endereco;
+
+    public Pessoa(String nome, String sobrenome, int idade, String cpf, String endereco) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.idade = idade;
+        this.cpf = cpf;
+        this.endereco = endereco;
+    }   
 
 }
