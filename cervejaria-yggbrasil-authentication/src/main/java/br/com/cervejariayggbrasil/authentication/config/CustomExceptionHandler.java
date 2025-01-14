@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.cervejariayggbrasil.authentication.exception.IllegalUserAgeException;
 import br.com.cervejariayggbrasil.authentication.exception.RestErrorMessage;
+import br.com.cervejariayggbrasil.authentication.exception.UserExistsException;
 import br.com.cervejariayggbrasil.authentication.exception.UserNotFoundException;
 
 @ControllerAdvice
@@ -25,6 +26,14 @@ public class CustomExceptionHandler {
                                         .map(DefaultMessageSourceResolvable::getDefaultMessage)
                                         .collect(Collectors.toList())
                                     .toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(UserExistsException.class)
+    public ResponseEntity<RestErrorMessage> userExistsException(UserExistsException exception){
+        RestErrorMessage errorMessage = new RestErrorMessage();
+        errorMessage.setHttpStatus(HttpStatus.BAD_REQUEST);
+        errorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
@@ -43,4 +52,5 @@ public class CustomExceptionHandler {
         errorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
+
  }
