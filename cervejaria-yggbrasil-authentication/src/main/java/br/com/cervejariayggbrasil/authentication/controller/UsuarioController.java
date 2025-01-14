@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cervejariayggbrasil.authentication.domain.dto.UsuarioRequest;
 import br.com.cervejariayggbrasil.authentication.domain.dto.UsuarioResponse;
 import br.com.cervejariayggbrasil.authentication.service.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -30,6 +31,11 @@ public class UsuarioController {
         return ResponseEntity.ok(new UsuarioResponse((usuarioService.registrar(data.toUsuario()))));
     }
 
+    @GetMapping("/pesquisar")
+    public ResponseEntity<UsuarioResponse> pesquisar(HttpServletRequest request){ 
+        return ResponseEntity.ok(new UsuarioResponse((usuarioService.pesquisar(request))));
+    }
+
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioResponse>> listar(){
         return ResponseEntity.ok(usuarioService.listar()
@@ -40,9 +46,7 @@ public class UsuarioController {
 
     @PutMapping("/liberar/{login}")
     public ResponseEntity<String> liberarAdmin(@PathVariable String login){
-        if(usuarioService.liberarAdmin(login))
-            return ResponseEntity.ok("Liberado permissão ADMIN para o usuário: ".concat(login));
-        else
-            return ResponseEntity.ok("Não foi possível liberar acesso ao usuário: ".concat(login));
+        usuarioService.liberarAdmin(login);
+        return ResponseEntity.ok("Liberado permissão ADMIN para o usuário: ".concat(login));
     }
 }

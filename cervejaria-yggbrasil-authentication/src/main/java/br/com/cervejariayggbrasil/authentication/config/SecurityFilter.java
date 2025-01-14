@@ -1,9 +1,7 @@
 package br.com.cervejariayggbrasil.authentication.config;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,8 +11,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.cervejariayggbrasil.authentication.repository.UsuarioRepository;
 import br.com.cervejariayggbrasil.authentication.service.JwtService;
-
-import java.io.IOException;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter{
@@ -31,7 +31,7 @@ public class SecurityFilter extends OncePerRequestFilter{
                 var token = this.recoverToken(request);
                 if(token != null){
                     var login = jwtService.validateToken(token);
-                    UserDetails user = usuarioRepository.findByLogin(login);
+                    UserDetails user = usuarioRepository.findByLogin(login).get();
         
                     var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
