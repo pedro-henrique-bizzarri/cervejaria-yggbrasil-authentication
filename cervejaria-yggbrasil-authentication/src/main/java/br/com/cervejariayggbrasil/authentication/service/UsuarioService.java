@@ -30,8 +30,7 @@ public class UsuarioService {
 
         usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         usuario.setPermissao(PermissaoEnum.USER);
-
-        usuarioRepository.save(usuario);
+        usuario = usuarioRepository.save(usuario);
         
         return usuario;
     }
@@ -58,14 +57,14 @@ public class UsuarioService {
         return usuarios;
     }
 
-    public void liberarAdmin(String login) {
+    public Usuario liberarAdmin(String login) {
         Optional<Usuario> usuario = Optional.of((Usuario) usuarioRepository.findByLogin(login).get());
 
         if (usuario.isEmpty()) 
             throw new UserNotFoundException();
 
         usuario.get().setPermissao(PermissaoEnum.ADMIN);
-        usuarioRepository.save(usuario.get());
+        return usuarioRepository.save(usuario.get());
     }
 
     private void validaUsuario(Usuario usuario) {
